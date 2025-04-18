@@ -1,5 +1,6 @@
 from enum import Enum
 from htmlnode import LeafNode, HTMLNode
+import re
 
 class TextType(Enum):
    NORMAL = "normal"
@@ -49,4 +50,14 @@ def text_node_to_html_node(text_node):
         
 
 
-      
+def extract_markdown_images(text):
+
+    matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+
+    return matches
+
+def extract_markdown_links(text):
+
+    matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)")
+
+    return matches
